@@ -1,8 +1,17 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import { injectGlobalStyles } from "../styles/stiches";
+import { RelayEnvironmentProvider } from "relay-hooks";
+import { useEnvironment } from "../relay/relayEnvironment";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const environment = useEnvironment(pageProps.initialRecords);
+
+  injectGlobalStyles();
+  return (
+    <RelayEnvironmentProvider environment={environment}>
+      <Component {...pageProps} />
+    </RelayEnvironmentProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -3,22 +3,43 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "generate:schema": "node ./scripts/generateSchema.js",
+    "relay": "relay-compiler",
+    "dev": "yarn run relay && next dev",
+    "build": "yarn run relay && next build",
+    "start": "next start"
+  },
+  "relay": {
+    "src": ".",
+    "schema": "./schema.graphql",
+    "language": "typescript"
   },
   "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.27.2",
+    "isomorphic-fetch": "^3.0.0",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-relay": "^14.1.0",
+    "relay-compiler-language-typescript": "^15.0.1",
+    "relay-hooks": "^7.1.0",
+    "relay-runtime": "^14.1.0"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.36",
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@types/react-relay": "^14.1.1",
+    "@types/relay-runtime": "^14.1.2",
+    "babel-plugin-relay": "^14.1.0",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
+    "graphql": "^16.6.0",
+    "relay-compiler": "^14.1.0",
+    "relay-config": "^12.0.1",
     "typescript": "4.8.2"
   }
 }
